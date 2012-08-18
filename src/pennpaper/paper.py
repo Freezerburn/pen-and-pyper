@@ -15,8 +15,6 @@ class Paper(object):
         self._hidden = {}
         self._batch = pyglet.graphics.Batch()
         self._frame = 0
-        self.to_one_sec = 0
-        self.last_frames = 0
         self._command_callbacks = [
             self._sprite,
             self._animate,
@@ -62,7 +60,7 @@ class Paper(object):
 
     def _sprite(self, command):
         key, asset, level, width, height = command[1:]
-        print 'Caching - key=%s, asset=%s, level=%s, slice width=%s, slice height=%s' % (key, asset, level, width, height)
+        # print 'Caching - key=%s, asset=%s, level=%s, slice width=%s, slice height=%s' % (key, asset, level, width, height)
         if key not in self._textures:
             self._textures[key] = (pyglet.resource.image(asset), level)
             if width is not None and height is not None:
@@ -75,7 +73,7 @@ class Paper(object):
     def _animate(self, command):
         frames = []
         anim_key, info, level, period, uses_grid = command[1:]
-        print 'Creating animation - key=%s, period=%s, uses_grid=%s, info=%s' % (anim_key, period, uses_grid, info)
+        # print 'Creating animation - key=%s, period=%s, uses_grid=%s, info=%s' % (anim_key, period, uses_grid, info)
         try:
             if period is not None:
                 if uses_grid:
@@ -91,7 +89,6 @@ class Paper(object):
                 for key, timing in info:
                     frames.append(AnimationFrame(self._textures[key], timing))
             anim = Animation(frames)
-            print key
             self._textures[anim_key] = (anim, level)
         except KeyError:
             print 'whoops'
@@ -177,14 +174,7 @@ class Paper(object):
 
     def _run_logic(self, dt):
         callbacks = self._command_callbacks
-        self.to_one_sec += dt
-        self.last_frames += 1
-        if self.to_one_sec >= 1.0:
-            self.to_one_sec -= 1.0
-            print 'Paper FPS: %s' % self.last_frames
-            self.last_frames = 0
         try:
-            # print 'PAPER %s' % dt
             the_movex = 0.0
             the_movey = 0.0
             the_movex2 = 0.0
@@ -200,12 +190,7 @@ class Paper(object):
                     callbacks[msg[0]](msg)
                 except KeyError:
                     print 'Error handling: %s' % str(msg)
-            print 'uid0 dx:%s, dy:%s' % (the_movex, the_movey)
-            print 'uid100 dx:%s, dy:%s' % (the_movex2, the_movey2)
             self._frame += 1
-            # if self._frame % 120 == 0:
-            #     print len(self._ents)
-            #     gc.collect()
         except EOFError:
             self._tell_pen(Nibs.Kill())
             pyglet.app.exit()
@@ -224,8 +209,8 @@ class Paper(object):
         self._window.event(self.on_draw)
         self._window.event(self.on_key_press)
         self._window.event(self.on_key_release)
-        self._tell_pen(('CLOCK', 1 / 120.0))
-        pyglet.clock.schedule_interval(self._run_logic, 1 / 250.0)
+        self._tell_pen(('CLOCK', 120.0))
+        pyglet.clock.schedule_interval(self._run_logic, 1 / 120.0)
         pyglet.app.run()
 
         self._pen_ear.close()

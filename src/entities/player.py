@@ -16,8 +16,8 @@ class Player(object):
 
     def tick(self, dt):
         move = self.vel * dt
-        # print dt
-        print move
+        # if move > 1.0:
+        #     print "DT: %s" % dt
         dx = 0.0
         dy = 0.0
         ret = []
@@ -61,7 +61,6 @@ class Player(object):
             new_animation = None
         if new_animation is not None and new_animation != self.current_anim:
             ret.append(Nibs.SwapAnimation(self.uid, new_animation))
-            print new_animation
             self.current_anim = new_animation
         if dx != 0 or dy != 0:
             ret.append(Nibs.Move(self.uid, dx, dy))
@@ -71,10 +70,10 @@ class Player(object):
         keystring = event[1]
         if keystring == 'LEFT':
             self.left = True
-            return Nibs.SwapAnimation(self.uid, 'player_walk_left')
+            return True
         elif keystring == 'RIGHT':
             self.right = True
-            return Nibs.SwapAnimation(self.uid, 'player_walk_right')
+            return True
         elif keystring == 'UP':
             self.up = True
             return True
@@ -87,11 +86,9 @@ class Player(object):
         keystring = event[1]
         if keystring == 'LEFT':
             self.left = False
-            # return Nibs.SwapAnimation(self.uid, 'player_stand_left')
             return True
         elif keystring == 'RIGHT':
             self.right = False
-            # return Nibs.SwapAnimation(self.uid, 'player_stand_right')
             return True
         elif keystring == 'UP':
             self.up = False

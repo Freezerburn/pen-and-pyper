@@ -5,6 +5,8 @@ from nibs import Nibs
 from entities.player import Player
 from entities.testing import RandomMover
 
+from pyglet.clock import Clock
+
 # Set an appropriate clock function based on our platform.
 try:
     platform.win32_ver()
@@ -32,7 +34,7 @@ class Pen(object):
     def __init__(self):
         self._ents = []
         self._nokey_ents = []
-        self._clock = None
+        self._clock = Clock()
         self._running = True
         self._sleep_time = None
         self._event_handlers = {
@@ -58,8 +60,8 @@ class Pen(object):
         self._pen_mouth.send(ink_blob)
 
     def _init_clock(self, command):
-        print 'Got clock'
-        self._sleep_time = command[1]
+        # print 'Got clock'
+        self._clock.set_fps_limit(command[1])
 
     def _cache_initial(self):
         self._tell_paper(Nibs.Sprite('player', 'player/sprites_map_claudius.png', width=32, height=64))
@@ -136,26 +138,16 @@ class Pen(object):
 
     def _run_loop(self):
         # Make everything local so that no global lookups occur.
-        last_time = clock()
         send_func = self._pen_mouth.send
-        clock_func = clock
+        clock_func = self._clock.update_time
         listen_func = self._listen_to_paper
         handlers = self._event_handlers
-        sleep_time = self._sleep_time
-        sleep_func = time.sleep
+        sleep_func = self._clock._limit
         num_events = 0
-        to_one_sec = 0
-        last_frames = 0
         while True:
-            dt = clock_func() - last_time
-            if dt < 0.0001:
-                sleep_func(0.003)
-                continue
-            to_one_sec += dt
-            last_time = clock_func()
+            dt = clock_func()
             for event in listen_func():
                 handlers[event[0]](event)
-            # print 'PEN %s' % dt
             # Handle the normal entities.
             for ent in self._ents:
                 event = ent.tick(dt)
@@ -181,17 +173,7 @@ class Pen(object):
                         num_events += 1
                         send_func(to_send)
             Pen._frame += 1
-            last_frames += 1
-            if to_one_sec >= 1.0:
-                to_one_sec -= 1.0
-                print 'FPS: %s' % last_frames
-                last_frames = 0
-            # if Pen._frame % 120 == 0:
-            #     print num_events
-            #     num_events = 0
-            sleep = sleep_time - (clock() - last_time)
-            # if sleep > 0.0083:
-            #     sleep_func(sleep)
+            sleep_func()
 
     def dip(self, pen, paper):
         """Tells the Pen to start processing movement, collision, etc.
@@ -202,7 +184,7 @@ class Pen(object):
         to_close.close()
 
         random.seed()
-        while self._sleep_time is None:
+        while self._clock is None:
             for event in self._listen_to_paper():
                 if event[0] == 'CLOCK':
                     self._init_clock(event)
@@ -215,4 +197,6 @@ class Pen(object):
         except EOFError:
             self._kill()
         except IOError:
+            self._kill()
+        except OSError:
             self._kill()
