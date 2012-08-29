@@ -16,7 +16,7 @@ if _debug_win32:
     _FormatMessageA = windll.kernel32.FormatMessageA
 
     _log_win32 = open('debug_win32.log', 'w')
-    
+
     def format_error(err):
         msg = create_string_buffer(256)
         _FormatMessageA(constants.FORMAT_MESSAGE_FROM_SYSTEM,
@@ -27,7 +27,7 @@ if _debug_win32:
                           len(msg),
                           c_void_p())
         return msg.value
-    
+
     class DebugLibrary(object):
         def __init__(self, lib):
             self.lib = lib
@@ -189,10 +189,13 @@ _user32.SetCapture.restype = HWND
 _user32.SetCapture.argtypes = [HWND]
 _user32.SetClassLongW.restype = DWORD
 _user32.SetClassLongW.argtypes = [HWND, c_int, LONG]
-if tuple.__itemsize__ == 8:
-    _user32.SetClassLongPtrW.restype = ULONG
-    _user32.SetClassLongPtrW.argtypes = [HWND, c_int, LONG_PTR]
-else:
+try:
+    if tuple.__itemsize__ == 8:
+        _user32.SetClassLongPtrW.restype = ULONG
+        _user32.SetClassLongPtrW.argtypes = [HWND, c_int, LONG_PTR]
+    else:
+        _user32.SetClassLongPtrW = _user32.SetClassLongW
+except AttributeError:
     _user32.SetClassLongPtrW = _user32.SetClassLongW
 _user32.SetCursor.restype = HCURSOR
 _user32.SetCursor.argtypes = [HCURSOR]

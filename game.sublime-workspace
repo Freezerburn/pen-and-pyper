@@ -147,7 +147,7 @@
 			"file": "src/pennpaper/paper.py",
 			"settings":
 			{
-				"buffer_size": 7274,
+				"buffer_size": 7526,
 				"line_ending": "Unix"
 			}
 		},
@@ -155,7 +155,7 @@
 			"file": "src/pennpaper/nibs.py",
 			"settings":
 			{
-				"buffer_size": 1983,
+				"buffer_size": 1581,
 				"line_ending": "Windows"
 			}
 		},
@@ -163,7 +163,7 @@
 			"file": "src/pennpaper/pen.py",
 			"settings":
 			{
-				"buffer_size": 11596,
+				"buffer_size": 6625,
 				"line_ending": "Unix"
 			}
 		},
@@ -179,7 +179,7 @@
 			"file": "src/entities/player.py",
 			"settings":
 			{
-				"buffer_size": 3130,
+				"buffer_size": 3210,
 				"line_ending": "Windows"
 			}
 		},
@@ -332,6 +332,11 @@
 	},
 	"file_history":
 	[
+		"/C/Users/vince_000/Documents/pypy-1.9/README",
+		"/C/Users/vince_000/Dropbox/Code/sublime-workspace/jpn-game2/README.md",
+		"/C/Users/vince_000/AppData/Roaming/Sublime Text 2/Packages/Vintage/Default.sublime-keymap",
+		"/C/Users/vince_000/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/vince_000/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/Users/vince_000/Dropbox/Code/sublime-workspace/jpn-game2/src/maps/grid.py",
 		"/C/Users/vince_000/Dropbox/Code/sublime-workspace/jpn-game2/src/entities/__init__.py",
 		"/C/Users/vince_000/Dropbox/Code/sublime-workspace/jpn-game2/src/pennpaper/pen.py",
@@ -389,6 +394,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"iamge",
+			"\n            ",
+			"print",
+			"esc",
 			"theme",
 			"]",
 			"CA",
@@ -414,7 +423,7 @@
 		"replace_history":
 		[
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -423,7 +432,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -670,15 +679,15 @@
 					"file": "src/pennpaper/paper.py",
 					"settings":
 					{
-						"buffer_size": 7274,
+						"buffer_size": 7526,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6264,
-								6265
+								2699,
+								2699
 							]
 						],
 						"settings":
@@ -776,7 +785,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2175.0,
+						"translation.y": 450.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -786,15 +795,15 @@
 					"file": "src/pennpaper/nibs.py",
 					"settings":
 					{
-						"buffer_size": 1983,
+						"buffer_size": 1581,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1321,
-								1321
+								555,
+								555
 							]
 						],
 						"settings":
@@ -892,7 +901,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 360.0,
+						"translation.y": 225.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -902,15 +911,15 @@
 					"file": "src/pennpaper/pen.py",
 					"settings":
 					{
-						"buffer_size": 11596,
+						"buffer_size": 6625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3441,
-								338
+								2638,
+								2638
 							]
 						],
 						"settings":
@@ -1008,7 +1017,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 104.0,
+						"translation.y": 1008.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1025,8 +1034,8 @@
 						"selection":
 						[
 							[
-								543,
-								543
+								542,
+								542
 							]
 						],
 						"settings":
@@ -1119,7 +1128,9 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1132,25 +1143,113 @@
 					"file": "src/entities/player.py",
 					"settings":
 					{
-						"buffer_size": 3130,
+						"buffer_size": 3210,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1286,
-								1286
+								1080,
+								1080
 							]
 						],
 						"settings":
 						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"indent": 1,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 360.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
